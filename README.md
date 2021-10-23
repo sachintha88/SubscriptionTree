@@ -34,6 +34,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+## Technologies and Tools used in this project
+
+React.js, Typescript(ts, tsx), JavaScript(js) Redux, CSS, JSON, JEST, NPM
+
 ## Approach
 As the initial data, we have an array of objects which are nodes of a tree-like structure where each leaf has a price attached. \
 By clicking on each parent node, users can expand their children.\
