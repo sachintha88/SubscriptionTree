@@ -50,7 +50,7 @@ Feature {
    }
 ```
 
-#####Mandatory Fields
+##### Mandatory Fields
 `feaureId` uniquely represents each feature. \
 `parentId` shows the relationship with its parent if any. \
 `path` shows the ancestry of the nodes. \
@@ -58,17 +58,17 @@ Feature {
 `expanded` is a boolean value that stores the status of the node expansion. \
 `checked` is a boolean value that represents the status user's choice.
 
-#####Optional Fields
+##### Optional Fields
 `sum` represents the sum of the price that is calculated by adding the cost of each child that has been selected by the user (only parent nodes have this field). \
 `price` represents the value of the service (only child nodes have this field).
 
-####UI Implementation
+#### UI Implementation
 By iteration through the array of `Feature` objects logic determines the placement of each node and place it where it should represent in the tree. \
 Each node will be accompanied by a `CheckBox` component, name, and price label. \
 Bottom pain shows the total sum of the services selected by the user.\
 By clicking the `save` button in to bottom right corner, users shall send a web service call to the server to save the selection.
 
-#####Tree Representation
+##### Tree Representation
  X Parent($50)\
  |________ O Child1(-)\
  |________ O Child2(-)\
@@ -77,16 +77,15 @@ By clicking the `save` button in to bottom right corner, users shall send a web 
   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__________ X GrandChild($10)\
    &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__________ X GrandChild($40)
     
-##Assumptions
+## Assumptions
 When a user selects a `child` node, the user *cannot* uncheck a `parent` node. \
 Users won't completely unsubscribe the products as `Total : $0 /mo` would disable to `Save` button.
 
-##Future Improvements
+## Future Improvements
 1. Simplify `Feature` object (Eg: by removing fields like `parentId` and use the `path` to determine the parent. \
 `caution: this could reduce the performance.` 
 2. Write more unit tests to validate the components.
 3. Conduct a proper dependency analysis to reduce the bundle size.
 4. Use strict Typescript validation.
 5. Do a performance tuneup using browser profiler ect.
-6. Localize Strings (This feature is 80% done)
 
