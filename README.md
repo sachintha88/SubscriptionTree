@@ -1,4 +1,4 @@
-# Getting Started with Subscription Feature
+# Getting Started with Subscription Feature Map
 
 This Document will explain how to get the code run, approach to solve the problem, and assumptions
 
