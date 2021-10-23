@@ -88,5 +88,4 @@ Users won't completely unsubscribe the products as `Total : $0 /mo` would disabl
 3. Conduct a proper dependency analysis to reduce the bundle size.
 4. Use strict Typescript validation.
 5. Do a performance tuneup using browser profiler ect.
-6. Localize Strings (This feature is 80% done)
 
