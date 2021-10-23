@@ -36,7 +36,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Technologies and Tools used in this project
 
-React.js, Typescript(ts, tsx), JavaScript(js) Redux, CSS, JSON, JEST, NPM
+`React.js`, `Typescript(ts, tsx)`, `JavaScript(js)`, `Redux`, `CSS`, `JSON`, `JEST`, `NPM`
 
 ## Approach
 As the initial data, we have an array of objects which are nodes of a tree-like structure where each leaf has a price attached. \
