@@ -6,6 +6,11 @@ This Document will explain how to get the code run, approach to solve the proble
 
 In the project directory, you can run:
 
+### Download and Install
+
+Download the project with the `git clone <url>`
+Install the packages with `npm install` 
+
 ### `npm start`
 
 Runs the app in the development mode.\
