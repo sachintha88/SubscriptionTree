@@ -1,0 +1,52 @@
+@mixin flex_expand() {
+  flex-direction: column;
+  flex: 1 0 0;
+}
+
+.feature_map {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  height: 740px;
+  border: 1px black solid;
+  margin: 50px;
+  text-align: center;
+
+  > .tree_container {
+    overflow: auto;
+    @include flex_expand()
+  }
+
+  > .title_div {
+    margin-top: 10px;
+  }
+
+  hr {
+    margin: 10px;
+  }
+
+  .feature_node {
+    list-style-type: none;
+  }
+
+  .feature_contents {
+    width: fit-content;
+  }
+
+  .bottom_container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    align-items: center;
+
+    > .total_label {
+      @include flex_expand()
+    }
+
+    button {
+      margin-right: 50px;
+      height: 40px;
+      width: 90px;
+    }
+  }
+}

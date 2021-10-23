@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+# Getting Started with Subscription Feature
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Document will explain how to get the code run, approach to solve the problem, and assumptions
 
-## Available Scripts
+## How to run the script
 
 In the project directory, you can run:
 
@@ -29,42 +29,64 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Approach
+As the initial data, we have an array of objects which are nodes of a tree-like structure where each leaf has a price attached. \
+By clicking on each parent node, users can expand their children.\
+\
+Each leaf node is a service that users may consider purchasing. By clicking each child (if it is a leaf) users can subscribe to features. \
+Idea is to create the UI to represent the structure and calculate the total price for the whole tree and each parent node correspondingly.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Each feature is represented by an object like this:
+```
+Feature {
+       featureId: number;
+       parentId: number | null,
+       path: string,
+       name: string,
+       sum?: number,
+       price?: number,
+       expanded: boolean,
+       checked: boolean,
+   }
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#####Mandatory Fields
+`feaureId` uniquely represents each feature. \
+`parentId` shows the relationship with its parent if any. \
+`path` shows the ancestry of the nodes. \
+`name` contains the name of the feature. \
+`expanded` is a boolean value that stores the status of the node expansion. \
+`checked` is a boolean value that represents the status user's choice.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#####Optional Fields
+`sum` represents the sum of the price that is calculated by adding the cost of each child that has been selected by the user (only parent nodes have this field). \
+`price` represents the value of the service (only child nodes have this field).
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+####UI Implementation
+By iteration through the array of `Feature` objects logic determines the placement of each node and place it where it should represent in the tree. \
+Each node will be accompanied by a `CheckBox` component, name, and price label. \
+Bottom pain shows the total sum of the services selected by the user.\
+By clicking the `save` button in to bottom right corner, users shall send a web service call to the server to save the selection.
 
-## Learn More
+#####Tree Representation
+ X Parent($50)\
+ |________ O Child1(-)\
+ |________ O Child2(-)\
+ |________ X Child3($50)\
+ &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__________ O GrandChild($20)\
+  &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__________ X GrandChild($10)\
+   &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|__________ X GrandChild($40)
+    
+##Assumptions
+When a user selects a `child` node, the user *cannot* uncheck a `parent` node. \
+Users won't completely unsubscribe the products as `Total : $0 /mo` would disable to `Save` button.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+##Future Improvements
+1. Simplify `Feature` object (Eg: by removing fields like `parentId` and use the `path` to determine the parent. \
+`caution: this could reduce the performance.` 
+2. Write more unit tests to validate the components.
+3. Conduct a proper dependency analysis to reduce the bundle size.
+4. Use strict Typescript validation.
+5. Do a performance tuneup using browser profiler ect.
+6. Localize Strings (This feature is 80% done)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

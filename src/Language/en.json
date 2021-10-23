@@ -1,0 +1,5 @@
+{
+  "subtotal" :  "Total: ${0} /mo",
+  "price": "(${0})",
+  "no_price": "(-)"
+}
